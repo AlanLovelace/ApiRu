@@ -1,0 +1,48 @@
+<html lang="es"><head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.rtl.min.css" integrity="sha384-WJUUqfoMmnfkBLne5uxXj+na/c7sesSJ32gI7GfCk4zO4GthUKhSEGyvQ839BC51" crossorigin="anonymous">
+
+    <title>ApiRa</title>
+  </head>
+  <body>
+        <div class="container my-5 text-center">
+          <button class="btn btn-danger w-100" onclick="traer()">obtener</button>
+          <div class="mt5" id="contenido">
+             
+          </div>
+        </div>
+
+
+    <script>
+      var contenido = document.querySelector('#contenido')
+      function  traer(){
+          fetch('https://randomuser.me/api/')
+          .then(res => res.json())
+          .then(data => {
+              console.log(data.results['0'])
+              contenido.innerHTML=`
+              <img src="${data.results['0'].picture.medium}" width="150px" class="img-fluid rounded-circle">
+            
+            <p>Apellido: ${data.results['0'].name.last}</p>
+            <p>Nombre: ${data.results['0'].name.first}</p>
+            <p>Ciudad: ${data.results['0'].location.city}</p>
+            <p>Nacido el: ${data.results['0'].dob.date}</p>
+            <p>Edad: ${data.results['0'].dob.age}</p>
+            <p>Telefono: ${data.results['0'].cell}</p>
+            `
+          })  
+      
+      }
+  </script>
+
+<ul>
+  <li><a href="index.html">HOME</a> </li>
+
+</ul>
+  
+
+</body></html>
